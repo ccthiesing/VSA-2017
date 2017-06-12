@@ -16,18 +16,36 @@ Rest = user_input[1:]
 user_input2 = capital.upper()
 user_inputAge = raw_input("Enter your age:")
 user_inputBirthday = raw_input("Have you had a birthday this year? ")
+total = 2017
 if user_inputBirthday == "yes":
+    print " HAPPY LATE BIRTHDAY!! (unless it's today then HAPPY BIRTHDAY!)"
     user_inputAgeint = int(user_inputAge)
-    TimeLeft = 100 - user_inputAgeint
-    year = TimeLeft + 2017
+    amount = 100 - user_inputAgeint
+    if user_inputAgeint > 100:
+        for number in range(amount * -1):
+            total = total + -1
+    else:
+        for number in range(amount):
+            total = total + 1
 else:
+    print "HAPPY EARLY BIRTHDAY!!"
     user_inputAgeint = int(user_inputAge)
-    TimeLeft = 99 - user_inputAgeint
-    year = TimeLeft + 2017
-print str(user_input2) + str(Rest) + " will turn 100 in the year " + str(year) + "!"
-if user_inputAge < 16:
+    amount2 = 99 - user_inputAgeint
+    if user_inputAgeint > 100:
+        for number in range(amount2 * -1):
+            total = total + -1
+    else:
+        for number in range(amount2):
+            total = total + 1
+if total <= 2017:
+    print str(user_input2) + str(Rest) + " turned 100 in the year " + str(total) + "!"
+else:
+    print str(user_input2) + str(Rest) + " will turn 100 in the year " + str(total) + "!"
+if user_inputAgeint > 110:
+    print "HOW ARE YOU STILL ALIVE?! ARE YOU IMMORTAL?"
+if user_inputAgeint > 16:
     print "PS: you can see R, PG-13, PG, or G movies"
-elif user_inputAge >= 13:
+elif user_inputAgeint >= 13:
     print "PS: you can see PG-13, PG, or G movies"
 else:
     print "PS: you can see PG or G movies"
