@@ -11,7 +11,11 @@ def divisors(num):
     :param num: int
     :return: list (int)
     """
-    return 0
+    answerlist = [ ]
+    for n in range(1,num+1):
+        if num % n == 0:
+            answerlist.append(n)
+    return answerlist
 
 def prime(num):
     """
@@ -19,7 +23,14 @@ def prime(num):
     :param num: int
     :return: bool
     """
-    return False
+    prime = []
+    ans = True
+    for n in range(1, num+1):
+        if num % n == 0:
+            prime.append(n)
+    if len(prime) > 2:
+        ans = False
+    return ans
 
 # Part II
 
@@ -30,7 +41,12 @@ def intersection(lst1, lst2):
     :param lst2: list, any type
     :return: list, any type
     """
-    return ["test"]
+    end = []
+    for number in lst1:
+        if number in lst2:
+            end.append(number)
+    print end,
+    return end
 
 # Part III
 
@@ -42,7 +58,18 @@ def find_ab(side1, side2, side3):
     :param side3: int or float
     :return: list of 2 ints or floats
     """
-    return [0, 0]
+    ansX = side1
+    if side2 > side1 and side2 > side3:
+        ansX = side2
+    else:
+        ansX = side3
+    ansY = side2
+    if side3 > side2 and side3 < side1:
+        ansY = side3
+    else:
+        ans = side1
+
+    return [ansX, ansY]
 
 def find_c(side1, side2, side3):
     """
@@ -52,7 +79,13 @@ def find_c(side1, side2, side3):
     :param side3: int or float
     :return: int or float
     """
-    return 0
+    ans = side1
+    if side2 > side1 and side2 > side3:
+        ans = side2
+    else:
+        ans = side3
+    print ans,
+    return ans
 
 def square(side):
     """
@@ -60,7 +93,8 @@ def square(side):
     :param side: int or float
     :return: int or float
     """
-    return 0
+    squared = side**2
+    return squared
 
 def pythagorean(a,b,c):
     """
@@ -70,7 +104,10 @@ def pythagorean(a,b,c):
     :param c: int or float
     :return: bool
     """
-    return False
+    ans = False
+    if a**2 + b**2 == c**2:
+        ans = True
+    return ans
 
 def is_right(side1, side2, side3):
     """
@@ -80,7 +117,27 @@ def is_right(side1, side2, side3):
     :param side3: int or float
     :return: bool
     """
-    return False
+    triangle = False
+    ansX2 = side1
+    if side2 < side1 and side2 < side3:
+        ansX2 = side2
+    else:
+        ansX2 = side3
+    ansY2 = side2
+    if side3 < side2 and side3 > side1:
+        ansY2 = side3
+    else:
+        ansY2 = side1
+    ans = side1
+    if side2 > side1 and side2 > side3:
+        ans = side2
+    else:
+        ans = side3
+
+    if ansX2**2 + ans**2 == ansY2**2:
+        triangle = True
+    print ansX2, ansY2, ans, triangle
+    return triangle
 
 # TESTS
 # Feel free to add your own tests as needed!

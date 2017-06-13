@@ -1,5 +1,5 @@
-# Name:
-# Date:
+# Name: Cameron
+# Date: 6-13-17
 
 
 # proj06: Hangman
@@ -44,5 +44,30 @@ def choose_word(wordlist):
 # the wordlist variable so that it can be accessed from anywhere
 # in the program
 wordlist = load_words()
-
 # your code begins here!
+#functions:
+def guesses():
+    guessesL = [6]
+    print "YOU HAVE ", len(guessesL), "LEFT."
+
+
+def correct():
+    yes = False
+    for letter in word2:
+        if letter in answer1:
+            print "ALAS! YOU HAVE GUESSED A LETTER!"
+            yes = True
+    return yes
+
+
+word = choose_word(wordlist)
+word2 = []
+for letter in word:
+    word2.append(letter)
+print "WELCOME TO THE HANGMAN: THE GAME!"
+print "THE WORD I HAVE SELECTED IS", len(word2), "LETTERS LONG."
+print word
+answer1 = raw_input("DO YOU DARE GUESS MY WORD?")
+correct()
+
+
