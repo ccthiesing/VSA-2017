@@ -1,5 +1,5 @@
-# Name:
-# Date:
+# Name: Cameron Thiesing
+# Date: 6-13-17
 
 # proj05: functions and lists
 
