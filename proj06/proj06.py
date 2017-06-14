@@ -46,52 +46,54 @@ def choose_word(wordlist):
 wordlist = load_words()
 # your code begins here!
 #functions:
+def hangman():
+    guessesL = 6
+    def correct():
+        yes = False
+        for letter in word2:
+            if letter in answer1:
+                print "ALAS! YOU HAVE GUESSED A LETTER!"
+                yes = True
+                for num in range(len(word2)):
+                    if word2[num] == letter:
+                        blanks[num] = letter
 
-guessesL = 6
-def correct():
-    yes = False
-    for letter in word2:
-        if letter in answer1:
-            print "ALAS! YOU HAVE GUESSED A LETTER!"
-            yes = True
-            for num in range(len(word2)):
-                if word2[num] == letter:
-                    blanks[num] = letter
+                break
+        return yes
 
+    alpha = []
+    word2 = []
+    word = choose_word(wordlist)
+    for stuff in string.lowercase:
+        alpha.append(stuff)
+    for letter in word:
+        word2.append(letter)
+    blanks = []
+    for item in word2:
+        blanks.append('_')
+    print "WELCOME TO THE HANGMAN: THE GAME!"
+    print "THE WORD I HAVE SELECTED IS", len(word2), "LETTERS LONG."
+    while guessesL > 0:
+        print blanks
+        print  "You can guess these letters: ", alpha
+        print "You have ", str(guessesL), "guesses left."
+        answer1 = raw_input("GUESS!!\n")
+        #correct()
+        if correct() == False:
+            guessesL = guessesL - 1
+            print "THAT WAS INCORRECT."
+        for letter in alpha:
+            if letter in answer1:
+                for num in range(len(alpha)):
+                    if alpha[num] == letter:
+                        alpha[num] = "_"
+
+        if blanks == word2:
+            print "YOU HAVE DEFEATED ME! You guessed the word:", word
             break
-    return yes
-alpha = []
-word2 = []
-word = choose_word(wordlist)
-for stuff in string.lowercase:
-    alpha.append(stuff)
-for letter in word:
-    word2.append(letter)
-blanks = []
-for item in word2:
-    blanks.append('_')
-print "WELCOME TO THE HANGMAN: THE GAME!"
-print "THE WORD I HAVE SELECTED IS", len(word2), "LETTERS LONG."
-while guessesL > 0:
-    print blanks
-    print  "You can guess these letters: ", alpha
-    print "You have ", str(guessesL), "guesses left."
-    answer1 = raw_input("GUESS!!\n")
-    #correct()
-    if correct() == False:
-        guessesL = guessesL - 1
-        print "THAT WAS INCORRECT."
-    for letter in alpha:
-        if letter in answer1:
-            for num in range(len(alpha)):
-                if alpha[num] == letter:
-                    alpha[num] = "_"
-
-    if blanks == word2:
-        print "YOU HAVE DEFEATED ME! You guessed the word:", word
-        break
-    else:
-        pass
-if guessesL == 0:
-    print "YOU HAVE BEEN DEFEATED!! YOU WERE UNABLE TO GUESS THE WORD:"
-    print word
+        else:
+            pass
+    if guessesL == 0:
+        print "YOU HAVE BEEN DEFEATED!! YOU WERE UNABLE TO GUESS THE WORD:"
+        print word
+hangman()
