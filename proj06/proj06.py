@@ -46,28 +46,53 @@ def choose_word(wordlist):
 wordlist = load_words()
 # your code begins here!
 #functions:
-def guesses():
-    guessesL = [6]
-    print "YOU HAVE ", len(guessesL), "LEFT."
 
-
+guessesL = 6
 def correct():
     yes = False
     for letter in word2:
         if letter in answer1:
             print "ALAS! YOU HAVE GUESSED A LETTER!"
             yes = True
+            for num in range(len(word2)):
+                if word2[num] == letter:
+                    blanks[num] = letter
+                    word2[0] = word2[1]
+
+            break
     return yes
-
-
-word = choose_word(wordlist)
+alpha = []
 word2 = []
+word = choose_word(wordlist)
+for stuff in string.lowercase:
+    alpha.append(stuff)
 for letter in word:
     word2.append(letter)
+blanks = []
+for item in word2:
+    blanks.append('_')
+
 print "WELCOME TO THE HANGMAN: THE GAME!"
 print "THE WORD I HAVE SELECTED IS", len(word2), "LETTERS LONG."
-print word
-answer1 = raw_input("DO YOU DARE GUESS MY WORD?")
-correct()
-
-
+while guessesL > 0:
+    print blanks
+    print word
+    print  "YOU CAN USE THESE LETTERS: ", alpha
+    print "YOU HAVE ", str(guessesL), "GUESSES LEFT."
+    answer1 = raw_input("GUESS!!")
+    correct()
+    if correct() == False:
+        guessesL = guessesL - 1
+        print "SORRY, THAT WAS INCORRECT."
+    for letter in alpha:
+        if letter in answer1:
+            for num in range(len(alpha)):
+                if alpha[num] == letter:
+                    alpha[num] = "_"
+    if len(word2) == 0:
+        print "I HAVE BEEN DEFEATED! YOU GUESSED THE WORD:"
+        print word
+        break
+if guessesL == 0:
+    print "YOU HAVE BEEN DEFEATED!! YOU WERE UNABLE TO GUESS THE WORD:"
+    print word
