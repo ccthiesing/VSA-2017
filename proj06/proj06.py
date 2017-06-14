@@ -57,7 +57,6 @@ def correct():
             for num in range(len(word2)):
                 if word2[num] == letter:
                     blanks[num] = letter
-                    word2[0] = word2[1]
 
             break
     return yes
@@ -71,28 +70,28 @@ for letter in word:
 blanks = []
 for item in word2:
     blanks.append('_')
-
 print "WELCOME TO THE HANGMAN: THE GAME!"
 print "THE WORD I HAVE SELECTED IS", len(word2), "LETTERS LONG."
 while guessesL > 0:
     print blanks
-    print word
-    print  "YOU CAN USE THESE LETTERS: ", alpha
-    print "YOU HAVE ", str(guessesL), "GUESSES LEFT."
-    answer1 = raw_input("GUESS!!")
-    correct()
+    print  "You can guess these letters: ", alpha
+    print "You have ", str(guessesL), "guesses left."
+    answer1 = raw_input("GUESS!!\n")
+    #correct()
     if correct() == False:
         guessesL = guessesL - 1
-        print "SORRY, THAT WAS INCORRECT."
+        print "THAT WAS INCORRECT."
     for letter in alpha:
         if letter in answer1:
             for num in range(len(alpha)):
                 if alpha[num] == letter:
                     alpha[num] = "_"
-    if len(word2) == 0:
-        print "I HAVE BEEN DEFEATED! YOU GUESSED THE WORD:"
-        print word
+
+    if blanks == word2:
+        print "YOU HAVE DEFEATED ME! You guessed the word:", word
         break
+    else:
+        pass
 if guessesL == 0:
     print "YOU HAVE BEEN DEFEATED!! YOU WERE UNABLE TO GUESS THE WORD:"
     print word
